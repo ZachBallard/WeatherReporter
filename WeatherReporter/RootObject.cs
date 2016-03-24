@@ -27,7 +27,7 @@ namespace WeatherReporter
         public virtual CurrentObservation current_observation { get; set; }
     }
     
-    //forcast stuff
+    //forecast stuff
     public class Forecastday
     {
         public int period { get; set; }

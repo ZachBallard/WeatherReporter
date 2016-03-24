@@ -21,7 +21,7 @@ namespace WeatherApp
             var forecast = mgr.GetForecast(userInput);
 
             //display Conditions
-            //display forcast
+            //display forecast
             //display hurricanes
         }
     }
