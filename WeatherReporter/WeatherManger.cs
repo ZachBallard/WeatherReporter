@@ -7,16 +7,18 @@ namespace WeatherReporter
 {
     public class WeatherManger
     {
-        //Add hurricane getter
+        public List<Hurricanes> GetHurricanes()
+        {
+            ILookup lookup = new WUGLookup();
+            return lookup.GetHurricanes();
+        }
 
         public List<Forecast10day> GetForecast(string userInput)
         {
             //determine which lookup to use
             var isZip = FigureOutLookupType(userInput);
 
-
             ILookup lookup = new WUGLookup();
-            var result = new List<Forecast10day>();
 
             return isZip ? lookup.GetByZipForecast(userInput) : lookup.GetByCityStateForecast(userInput);
         }
@@ -28,7 +30,6 @@ namespace WeatherReporter
 
 
             ILookup lookup = new WUGLookup();
-            var result = new List<RootObject>();
 
             return isZip ? lookup.GetByZipConditions(userInput) : lookup.GetByCityStateConditions(userInput);
         }

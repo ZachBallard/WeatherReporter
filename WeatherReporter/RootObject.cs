@@ -49,4 +49,24 @@ namespace WeatherReporter
     {
         public virtual Forecast forecast { get; set; }
     }
+
+    //hurricane stuff
+
+    public class StormInfo
+    {
+        public string stormName { get; set; }
+        public string stormName_Nice { get; set; }
+        public string stormNumber { get; set; }
+    }
+
+    public class Currenthurricane
+    {
+        public virtual StormInfo storminfo { get; set; }
+    }
+
+    public class Hurricanes
+    {
+        public virtual Currenthurricane currenthurricane { get; set; }
+    }
+
 }

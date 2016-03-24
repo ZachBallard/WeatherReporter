@@ -14,12 +14,12 @@ namespace WeatherReporter
             throw new NotImplementedException();
         }
 
-        public List<Forcast10day> GetByZipForcast()
+        public List<Forecast10day> GetByZipForcast()
         {
             throw new NotImplementedException();
         }
 
-        public List<Forcast10day> GetByCityStateForcast()
+        public List<Forecast10day> GetByCityStateForcast()
         {
             throw new NotImplementedException();
         }
