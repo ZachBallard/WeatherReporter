@@ -9,8 +9,8 @@ namespace WeatherReporter
     {
         List<RootObject> GetByCityStateConditions(string citystate);
         List<RootObject> GetByZipConditions(string zip);
-        List<Forcast10day> GetByZipForcast(string zip);
-        List<Forcast10day> GetByCityStateForcast(string citystate);
+        List<Forecast10day> GetByZipForecast(string zip);
+        List<Forecast10day> GetByCityStateForecast(string citystate);
     }
 
     public class WUGLookup : ILookup
@@ -18,9 +18,9 @@ namespace WeatherReporter
         public List<RootObject> GetByCityStateConditions(string citystate)
         {
             //Today's conditions
-            var client = new RestClient("http://example.com");
+            var client = new RestClient("http://api.wunderground.com/api/3936351a6e594384/conditions/q/");
 
-            var request = new RestRequest("resource/{id}", Method.GET);
+            var request = new RestRequest($"{citystate}.json", Method.GET);
 
             IRestResponse<List<RootObject>> response = client.Execute.List(request);
             return response.Data;
@@ -29,33 +29,33 @@ namespace WeatherReporter
         public List<RootObject> GetByZipConditions(string zip)
         {
             //Today's conditions
-            var client = new RestClient("http://example.com");
+            var client = new RestClient("http://api.wunderground.com/api/3936351a6e594384/conditions/q/");
 
-            var request = new RestRequest("resource/{id}", Method.GET);
+            var request = new RestRequest($"{zip}.json", Method.GET);
 
             IRestResponse<List<RootObject>> response = client.Execute.List(request);
             return response.Data;
         }
 
-        public List<Forcast10day> GetByZipForcast(string userInput)
+        public List<Forecast10day> GetByZipForecast(string zip)
         {
             //10 day Forcast
             var client = new RestClient("http://example.com");
 
-            var request = new RestRequest("resource/{id}", Method.GET);
+            var request = new RestRequest($"{zip}.json", Method.GET);
 
-            IRestResponse<List<Forcast10day>> response = client.Execute.List(request);
+            IRestResponse<List<Forecast10day>> response = client.Execute.List(request);
             return response.Data;
         }
 
-        public List<Forcast10day> GetByCityStateForcast(string userInput)
+        public List<Forecast10day> GetByCityStateForecast(string citystate)
         {
             //10 day Forcast
             var client = new RestClient("http://example.com");
 
-            var request = new RestRequest("resource/{id}", Method.GET);
+            var request = new RestRequest($"{citystate}.json", Method.GET);
 
-            IRestResponse<List<Forcast10day>> response = client.Execute.List(request);
+            IRestResponse<List<Forecast10day>> response = client.Execute.List(request);
             return response.Data;
         }
     }

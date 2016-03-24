@@ -45,7 +45,7 @@ namespace WeatherReporter
         public virtual TxtForecast txt_forecast { get; set; }
     }
 
-    public class Forcast10day
+    public class Forecast10day
     {
         public virtual Forecast forecast { get; set; }
     }

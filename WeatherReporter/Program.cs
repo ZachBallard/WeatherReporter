@@ -18,7 +18,7 @@ namespace WeatherApp
 
             var mgr = new WeatherManger();
             var conditions = mgr.GetConditions(userInput);
-            var forcast = mgr.GetForcast(userInput);
+            var forecast = mgr.GetForecast(userInput);
 
             //display Conditions
             //display forcast
