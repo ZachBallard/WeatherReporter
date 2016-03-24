@@ -55,7 +55,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RootObject.cs" />
-    <Compile Include="WeatherInfo.cs" />
     <Compile Include="WeatherManger.cs" />
     <Compile Include="WUGLookup.cs" />
   </ItemGroup>

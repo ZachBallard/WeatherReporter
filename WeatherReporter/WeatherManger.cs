@@ -1,52 +1,46 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace WeatherApp
 {
-
-    public enum LookupType
-    {
-        Zip,
-        CityState,
-    }
-
     public class WeatherManger
     {
-
-        public WeatherInfo GetWeather(string userInput)
+        public void GetWeather(string userInput)
         {
             //determine which lookup to use
-            LookupType lookupType = FigureOutLookupType(userInput);
+            var isZip = FigureOutLookupType(userInput);
 
 
             ILookup lookup = new WUGLookup();
-            //determine if userINput is a zip or otherwise using regex
-            //if it was a zip string then
-            RootObject result;
+            var result = new List<RootObject>();
+            var result2 = new List<Forcast10day>();
 
-            switch (lookupType)
+            if (isZip)
             {
-                case LookupType.Zip:
-                    result = lookup.GetByZip(userInput);
-                    break;
-                case LookupType.CityState:
-                default:
-                    result = lookup.GetByCityState(userInput);
-                    break;
+                result = lookup.GetByZipConditions(userInput);
+                result2 = lookup.GetByZipForcast();
             }
-
-
-            //map result to weatherinfo
-            var info = new WeatherInfo();
-            //info.Temp = result.CurrentObservations.Temperature + "° F";
-
-            return info;
+            else
+            {
+                result = lookup.GetByCityStateConditions(userInput);
+                result2 = lookup.GetByCityStateForcast();
+            }
         }
 
-        private LookupType FigureOutLookupType(string userInput)
+        private bool FigureOutLookupType(string userInput)
         {
             //do regex check for zip here.
-            throw new NotImplementedException();
+            Regex rx = new Regex(@"^\d{5}(?:[-\s]\d{4})?$", RegexOptions.IgnoreCase);
+
+            MatchCollection possibleZip = rx.Matches(userInput);
+
+            if (possibleZip.Count != 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

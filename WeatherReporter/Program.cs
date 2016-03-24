@@ -23,7 +23,6 @@ namespace WeatherApp
             Console.WriteLine(weather.Humidity);
             Console.WriteLine(weather.City);
             Console.WriteLine(weather.State);
-
         }
     }
 }

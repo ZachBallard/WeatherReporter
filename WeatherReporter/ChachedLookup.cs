@@ -9,12 +9,22 @@ namespace WeatherReporter
 {
     public class CachedLookup : ILookup
     {
-        public RootObject GetByCityState(string citystate)
+        public List<RootObject> GetByCityStateConditions(string citystate)
         {
             throw new NotImplementedException();
         }
 
-        public RootObject GetByZip(string zip)
+        public List<Forcast10day> GetByZipForcast()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Forcast10day> GetByCityStateForcast()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<RootObject> GetByZipConditions(string zip)
         {
             throw new NotImplementedException();
         }
