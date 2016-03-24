@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace WeatherApp
+namespace WeatherReporter
 {
+    //condition stuff
     public class DisplayLocation
     {
         public string city { get; set; }
@@ -23,9 +24,10 @@ namespace WeatherApp
 
     public class RootObject
     {
-        public CurrentObservation current_observation { get; set; }
+        public virtual CurrentObservation current_observation { get; set; }
     }
-
+    
+    //forcast stuff
     public class Forecastday
     {
         public int period { get; set; }
@@ -35,16 +37,16 @@ namespace WeatherApp
 
     public class TxtForecast
     {
-        public List<Forecastday> forecastday { get; set; }
+        public virtual List<Forecastday> forecastday { get; set; }
     }
 
     public class Forecast
     {
-        public TxtForecast txt_forecast { get; set; }
+        public virtual TxtForecast txt_forecast { get; set; }
     }
 
     public class Forcast10day
     {
-        public Forecast forecast { get; set; }
+        public virtual Forecast forecast { get; set; }
     }
 }

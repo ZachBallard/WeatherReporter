@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Xml;
 using RestSharp;
 
-namespace WeatherApp
+namespace WeatherReporter
 {
     public interface ILookup
     {
         List<RootObject> GetByCityStateConditions(string citystate);
         List<RootObject> GetByZipConditions(string zip);
-        List<Forcast10day> GetByZipForcast();
-        List<Forcast10day> GetByCityStateForcast();
+        List<Forcast10day> GetByZipForcast(string zip);
+        List<Forcast10day> GetByCityStateForcast(string citystate);
     }
 
     public class WUGLookup : ILookup
@@ -37,7 +37,7 @@ namespace WeatherApp
             return response.Data;
         }
 
-        public List<Forcast10day> GetByZipForcast()
+        public List<Forcast10day> GetByZipForcast(string userInput)
         {
             //10 day Forcast
             var client = new RestClient("http://example.com");
@@ -48,7 +48,7 @@ namespace WeatherApp
             return response.Data;
         }
 
-        public List<Forcast10day> GetByCityStateForcast()
+        public List<Forcast10day> GetByCityStateForcast(string userInput)
         {
             //10 day Forcast
             var client = new RestClient("http://example.com");

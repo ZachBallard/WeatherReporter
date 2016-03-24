@@ -7,7 +7,7 @@ using WeatherApp;
 
 namespace WeatherReporter
 {
-    public class CachedLookup : ILookup
+    public class CachedLookup //interface usage not ready
     {
         public List<RootObject> GetByCityStateConditions(string citystate)
         {
