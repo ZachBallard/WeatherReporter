@@ -32,13 +32,23 @@ namespace WeatherReporter
         {
             //Today's conditions
             var isValid = ConvertCityState(citystate);
-            String[] citystateSplit = citystate.Split(',');
-            var client = new RestClient("http://api.wunderground.com/api/3936351a6e594384/conditions/q/");
 
-            var request = new RestRequest($"{citystateSplit[1]}/{citystateSplit[0]}.json", Method.GET);
+            if (isValid)
+            {
+                String[] citystateSplit = citystate.Split(',');
+                var client = new RestClient("http://api.wunderground.com/api/3936351a6e594384/conditions/q/");
 
-            var response = client.Execute<List<RootObject>>(request);
-            return response.Data;
+                var request = new RestRequest($"{citystateSplit[1]}/{citystateSplit[0]}.json", Method.GET);
+
+                var response = client.Execute<List<RootObject>>(request);
+                return response.Data;
+            }
+
+            Console.WriteLine("Invalid Input");
+            Console.ReadLine();
+            Console.Clear();
+            return new List<RootObject>();
+
         }
 
         public List<RootObject> GetByZipConditions(string zip)
@@ -79,7 +89,7 @@ namespace WeatherReporter
 
         public bool ConvertCityState(string citystate)
         {
-            Regex rx = new Regex(@"/^[A-Za-z . ,'-]+$/", RegexOptions.IgnoreCase);
+            Regex rx = new Regex(@"(^[\w\s]+,\s\w{2}$)", RegexOptions.IgnoreCase);
             MatchCollection matches = rx.Matches(citystate);
 
             if (matches.Count == 1)
